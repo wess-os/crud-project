@@ -11,3 +11,7 @@
 <p>- Para acessar o sistema pelo backend ou pelo frontend é necessário estar autenticado;</p>
 
 <h4>INFORMAÇÕES</h4>
+<h5>Como configurar o backend:</h5>
+<p></p>
+<h5>Como configurar o frontend:</h5>
+<p></p>
