@@ -12,7 +12,7 @@
 
 <h4>INFORMAÇÕES</h4>
 <h5>Como configurar o backend:</h5>
-<h6>- Você vai precisar criar um arquivo .env na raiz do backend, contendo as seguintes variáveis de ambiente:</h6>
+<h5>Você vai precisar criar um arquivo .env na raiz do backend, contendo as seguintes variáveis de ambiente:</h6>
 <p>- PORT=porta_do_banco</p>
 <p>- PORT_FRONTEND=porta_do_frontend</p>
 <p>- HOST=host_do_banco</p>
