@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/knex');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 router.post('/adminlogin', async (req, res) => {
     const { email, password } = req.body;

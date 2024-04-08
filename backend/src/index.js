@@ -6,7 +6,7 @@ const { router: adminRouter } = require('./routes/adminRouter');
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:5173"],
+    origin: [`http://localhost:${process.env.PORT_FRONTEND}`],
     methods: ['GET', 'POST', 'PUT'],
     credentials: true
 }));

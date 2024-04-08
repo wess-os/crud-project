@@ -12,6 +12,14 @@
 
 <h4>INFORMAÇÕES</h4>
 <h5>Como configurar o backend:</h5>
+<h6>- Você vai precisar criar um arquivo .env na raiz do backend, contendo as seguintes variáveis de ambiente:</h6>
+<p>- PORT=porta_do_banco</p>
+<p>- PORT_FRONTEND=porta_do_frontend</p>
+<p>- HOST=host_do_banco</p>
+<p>- USER=usuario_do_banco</p>
+<p>- PASSWORD=senha_do_banco</p>
+<p>- DATABASE=nome_do_banco</p>
+<p>- JWT_SECRET_KEY=jwt_secret_key</p>
 <p></p>
 <h5>Como configurar o frontend:</h5>
 <p></p>
