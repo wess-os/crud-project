@@ -20,32 +20,32 @@ const Sidebar = () => {
         <ul className="list-none m-0 p-0">
           <li className="flex items-center space-x-2">
             <DashboardIcon fontSize="large" onClick={toggleSidebar} className='cursor-pointer text-white' titleAccess='Admin Dashboard'/>
-            {isOpen && <h3 className="text-white text-xl">Dashboard</h3>}
+            <Link to="">{isOpen && <h3 className="text-white text-xl">Dashboard</h3>}</Link>
           </li>
 
           <li className="flex items-center space-x-2 mt-10">
-            <Link to="#" className="flex items-center space-x-2">
+            <Link to="/dashboard/create" className="flex items-center space-x-2">
               <PersonAddAltIcon fontSize="large" className='cursor-pointer text-white icon' titleAccess='Cadastrar uma nova pessoa'/>
               {isOpen && <span className="text-white text-lg">Cadastrar</span>}
             </Link>
           </li>
           
           <li className="flex items-center space-x-2 mt-5">
-            <Link to="#" className="flex items-center space-x-2">
+            <Link to="/dashboard/list" className="flex items-center space-x-2">
               <PersonSearchIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Listar pessoas cadastradas'/>
               {isOpen && <span className="text-white text-lg">Listar</span>}
             </Link>
           </li>
 
           <li className="flex items-center space-x-2 mt-5">
-            <Link to="#" className="flex items-center space-x-2">
+            <Link to="/dashboard/edit" className="flex items-center space-x-2">
               <EditIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Editar pessoas cadastradas'/>
               {isOpen && <span className="text-white text-lg">Editar</span>}
             </Link>
           </li>
 
           <li className="flex items-center space-x-2 mt-5">
-            <Link to="#" className="flex items-center space-x-2">
+            <Link to="/dashboard/delete" className="flex items-center space-x-2">
               <DeleteOutlineIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Deletar uma pessoa cadastrada'/>
               {isOpen && <span className="text-white text-lg">Deletar</span>}
             </Link>
