@@ -5,6 +5,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,13 @@ const Sidebar = () => {
             <Link to="#" className="flex items-center space-x-2">
               <DeleteOutlineIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Deletar uma pessoa cadastrada'/>
               {isOpen && <span className="text-white text-lg">Deletar</span>}
+            </Link>
+          </li>
+
+          <li className="flex items-center space-x-2 mt-10">
+            <Link to="/adminlogin" className="flex items-center space-x-2">
+              <LogoutIcon fontSize="large" className='cursor-pointer text-decoration-none text-red-500' titleAccess='Sair'/>
+              {isOpen && <span className="text-white text-lg">Sair</span>}
             </Link>
           </li>
         </ul>

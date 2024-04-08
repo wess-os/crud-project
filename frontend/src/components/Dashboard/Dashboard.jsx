@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import LogoutIcon from '@mui/icons-material/Logout';
 import Sidebar from '../Sidebar/Sidebar';
 
 const Dashboard = () => {
@@ -8,9 +6,6 @@ const Dashboard = () => {
     <div className='bg-[rgba(250,250,250,.3)] text-[rgb(45,45,45)] font-sans'>
       <header className='h-12 px-8 shadow-md flex items-center justify-evenly gap-2'>
         <h2 className='ml-12 text-xl font-bold'>CONTROLE DE CLIENTES</h2>
-        <Link to="/adminlogin">
-          <LogoutIcon className='cursor-pointer text-decoration-none text-red-500' titleAccess='Sair'/>
-        </Link>
       </header>
 
       <Sidebar/>
