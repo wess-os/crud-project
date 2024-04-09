@@ -1,3 +1,4 @@
+import React from 'react';
 import Login from './components/Login/Login.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Home from './components/Home/Home.jsx';
