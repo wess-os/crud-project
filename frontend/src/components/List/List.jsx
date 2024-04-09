@@ -25,7 +25,7 @@ function List() {
     {
       name: 'Endereço',
       cell: row => (
-        <Button onClick={() => setOpenModal(true)} className='text-yellow-500 border-none ml-[-16px]'>Endereço</Button>
+        <Button onClick={() => setOpenModal(true)} className='text-green-500 border-none ml-[-16px]'>Ver Endereço</Button>
       ),
    }
   ];
@@ -80,10 +80,10 @@ function List() {
           },
         }}
       />
-      <Modal show={openModal} onClose={() => setOpenModal(false)} className="fixed inset-0 flex items-center justify-center z-50 mt-[100px]">
+      <Modal show={openModal} onClose={() => setOpenModal(false)} className="fixed inset-0 flex items-center justify-center z-50 mt-[100px] ml-[200px] mr-[200px]">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
             <div className="bg-gray-50 p-4">
-              <h2 className="text-lg font-semibold text-center">Detalhes do Cliente</h2>
+              <h2 className="text-lg font-semibold text-center">Endereço do Cliente</h2>
             </div>
             <Modal.Body className="p-4 text-center">
               <p>CEP: <strong>29395-000</strong></p>
