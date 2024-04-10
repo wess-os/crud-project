@@ -34,4 +34,16 @@ router.post('/adminlogin', async (req, res) => {
     }
 });
 
+router.post('/create', async (req, res) => {
+    try {
+        const pessoaData = req.body;
+    
+        const ids = await db('pessoas').insert(pessoaData);
+    
+        res.json({ Status: true });
+     } catch (err) {
+        return res.json({ Status: false, Error: err });
+     }
+});
+
 module.exports = { router: router };
