@@ -1,33 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DataTable from "react-data-table-component";
 import { Button, Modal } from 'flowbite-react';
 
-const data = [
-  { nome: 'Teste1', sexo: 'Masculino', nascimento: '10/08/2003', estadoC: 'Solteiro' },
-  { nome: 'Teste2', sexo: 'Feminino', nascimento: '20/03/2004', estadoC: 'Casado' },
-];
-
 function List() {
+  const [data, setData] = useState([]);
   const [filterText, setFilterText] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  // modal de ver endereço
+  const handleOpenModal = (person) => {
+    setSelectedPerson(person);
+    setOpenModal(true);
+  };
+
+  // comunicação com o backend
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_REACT_APP_API}/auth/list`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.Status && Array.isArray(data.Pessoas)) {
+          setData(data.Pessoas);
+        } else {
+          console.error('Os dados recebidos não são um array:', data);
+        }
+      })
+      .catch(error => console.error('Erro ao buscar dados:', error));
+  },[]);
 
   const filteredData = data.filter(
-    item =>
-      item.nome.toLowerCase().includes(filterText.toLowerCase())
+    item => item?.nome?.toLowerCase().includes(filterText.toLowerCase())
   );
-
-  const [openModal, setOpenModal] = useState(false);
 
   const columns = [
     { name: 'Nome', selector: row => row.nome, sortable: true },
     { name: 'Sexo', selector: row => row.sexo, sortable: true },
-    { name: 'Data Nasc.', selector: row => row.nascimento, sortable: true },
-    { name: 'Estado Civil', selector: row => row.estadoC, sortable: true },
+    { name: 'Data Nasc.', selector: row => row.data_nascimento, sortable: true },
+    { name: 'Estado Civil', selector: row => row.estado_civil, sortable: true },
     {
       name: 'Endereço',
       cell: row => (
-        <Button onClick={() => setOpenModal(true)} className='text-green-500 border-none ml-[-16px]'>Ver Endereço</Button>
+        <Button onClick={() => handleOpenModal(row)} className='text-green-500 border-none ml-[-16px]'>Ver Endereço</Button>
       ),
-   }
+    }
   ];
 
   return (
@@ -80,22 +95,33 @@ function List() {
           },
         }}
       />
-      <Modal show={openModal} onClose={() => setOpenModal(false)} className="fixed inset-0 flex items-center justify-center z-50 mt-[100px] ml-[200px] mr-[200px]">
+      <Modal 
+        show={openModal} 
+        onClose={() => setOpenModal(false)} 
+        className="fixed inset-0 flex items-center justify-center z-50 mt-[100px] ml-[200px] mr-[200px]"
+      >
         <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
             <div className="bg-gray-50 p-4">
               <h2 className="text-lg font-semibold text-center">Endereço do Cliente</h2>
             </div>
             <Modal.Body className="p-4 text-center">
-              <p>CEP: <strong>29395-000</strong></p>
-              <p>Endereço: <strong>Rua Salomão Fadlalah</strong></p>
-              <p>Número: <strong>228</strong></p>
-              <p>Complemento: <strong>Casa</strong></p>
-              <p>Bairro: <strong>Centro</strong></p>
-              <p>Estado: <strong>ES</strong></p>
-              <p>Cidade: <strong>Ibatiba</strong></p>
+            {selectedPerson && (
+              <>
+                <p>CEP: <strong>{selectedPerson.cep}</strong></p>
+                <p>Endereço: <strong>{selectedPerson.endereco}</strong></p>
+                <p>Número: <strong>{selectedPerson.numero}</strong></p>
+                <p>Complemento: <strong>{selectedPerson.complemento}</strong></p>
+                <p>Bairro: <strong>{selectedPerson.bairro}</strong></p>
+                <p>Estado: <strong>{selectedPerson.estado}</strong></p>
+                <p>Cidade: <strong>{selectedPerson.cidade}</strong></p>
+              </>
+            )}
             </Modal.Body>
             <Modal.Footer className="bg-gray-50 p-4">
-              <Button onClick={() => setOpenModal(false)} className="bg-blue-500 text-white rounded py-1">Fechar</Button>
+              <Button 
+                onClick={() => setOpenModal(false)} 
+                className="bg-blue-500 text-white rounded py-1"
+              >Fechar</Button>
             </Modal.Footer>
         </div>
       </Modal>

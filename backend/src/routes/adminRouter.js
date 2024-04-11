@@ -8,6 +8,7 @@ router.post('/adminlogin', async (req, res) => {
     const { email, password } = req.body;
 
     try {
+
         const result = await db('admin').where({ email }).select('password').first();
 
         if (!result) {
@@ -27,9 +28,10 @@ router.post('/adminlogin', async (req, res) => {
         const token = jwt.sign({ role: "admin", email }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
         res.cookie('token', token);
 
-        return res.json({ loginStatus: true, Error: 'Sucesso' });
+        return res.json({ loginStatus: true, Sucess: 'Sucesso' });
     } catch (error) {
         console.error(error);
+        
         return res.json({ loginStatus: false, Error: 'Erro interno do servidor' });
     }
 });
@@ -37,6 +39,13 @@ router.post('/adminlogin', async (req, res) => {
 router.post('/create', async (req, res) => {
     try {
         const pessoaData = req.body;
+
+        const camposNecessarios = ['nome', 'sexo', 'data_nascimento', 'estado_civil', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'estado', 'cidade'];
+        const camposFaltantes = camposNecessarios.filter(campo => !pessoaData.hasOwnProperty(campo));
+
+        if (camposFaltantes.length > 0) {
+            return res.status(400).json({ Status: false, Error: `Campos faltantes: ${camposFaltantes.join(', ')}` });
+        }
     
         const ids = await db('pessoas').insert(pessoaData);
     
@@ -44,6 +53,20 @@ router.post('/create', async (req, res) => {
      } catch (err) {
         return res.json({ Status: false, Error: err });
      }
+});
+
+router.get('/list', async (req, res) => {
+    try {
+        const pessoas = await db('pessoas').select('*');
+
+        if (pessoas.length === 0) {
+            return res.status(404).json({ Status: false, Error: 'Nenhuma pessoa encontrada' });
+        }
+
+        res.json({ Status: true, Pessoas: pessoas });
+    } catch (err) {
+        return res.status(500).json({ Status: false, Error: err.message });
+    }
 });
 
 module.exports = { router: router };

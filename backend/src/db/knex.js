@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 const knex = require('knex')({
@@ -9,6 +10,6 @@ const knex = require('knex')({
        password: process.env.PASSWORD,
        database: process.env.DATABASE
     }
-   });
+});
    
-   module.exports = knex;
+module.exports = knex;
