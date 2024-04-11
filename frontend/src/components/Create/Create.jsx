@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Modal from '../Modal/Modal';
 
 function Create() {
   // formdata com os dados do cliente
@@ -17,6 +18,9 @@ function Create() {
     cidade: '',
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
   // verifica as mudanças nos valores dos campos
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +33,8 @@ function Create() {
     // verifica se todos os campos foram preenchidos
     const isAnyFieldEmpty = Object.values(formData).some(field => field === '');
     if (isAnyFieldEmpty) {
-      console.error('Por favor, preencha todos os campos.');
+      setModalMessage('Por favor, preencha todos os campos.');
+      setIsModalOpen(true);
       return;
     }
 
@@ -37,8 +42,13 @@ function Create() {
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API}/auth/create`, formData);
       console.log(response.data);
     } catch (error) {
-      console.error(error);
+      setModalMessage('An error occurred: ' + error.message);
+      setIsModalOpen(true);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -217,6 +227,8 @@ function Create() {
               />
             </div>
           </div>
+
+          <Modal isOpen={isModalOpen} message={modalMessage} onClose={closeModal} />
 
           <div className="flex items-center justify-between">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
