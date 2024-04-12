@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const Sidebar = () => {
@@ -27,27 +24,6 @@ const Sidebar = () => {
             <Link to="/dashboard/create" className="flex items-center space-x-2">
               <PersonAddAltIcon fontSize="large" className='cursor-pointer text-white icon' titleAccess='Cadastrar uma nova pessoa'/>
               {isOpen && <span className="text-white text-lg">Cadastrar</span>}
-            </Link>
-          </li>
-          
-          <li className="flex items-center space-x-2 mt-5">
-            <Link to="/dashboard/list" className="flex items-center space-x-2">
-              <PersonSearchIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Listar pessoas cadastradas'/>
-              {isOpen && <span className="text-white text-lg">Listar</span>}
-            </Link>
-          </li>
-
-          <li className="flex items-center space-x-2 mt-5">
-            <Link to="/dashboard/edit" className="flex items-center space-x-2">
-              <EditIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Editar pessoas cadastradas'/>
-              {isOpen && <span className="text-white text-lg">Editar</span>}
-            </Link>
-          </li>
-
-          <li className="flex items-center space-x-2 mt-5">
-            <Link to="/dashboard/delete" className="flex items-center space-x-2">
-              <DeleteOutlineIcon fontSize="large" className='cursor-pointer text-white' titleAccess='Deletar uma pessoa cadastrada'/>
-              {isOpen && <span className="text-white text-lg">Deletar</span>}
             </Link>
           </li>
 

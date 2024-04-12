@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ErrorIcon from '@mui/icons-material/Error';
 
-const Modal = ({ isOpen, message, onClose }) => {
+const ModalError = ({ isOpen, message, onClose }) => {
   const [animationClass, setAnimationClass] = useState('');
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const Modal = ({ isOpen, message, onClose }) => {
   );
 };
 
-export default Modal
+export default ModalError

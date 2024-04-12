@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Modal from '../Modal/Modal';
+import ModalError from '../Modal/ModalError';
 import ModalSuccess from '../Modal/ModalSuccess';
 
 function Create() {
@@ -231,7 +231,7 @@ function Create() {
             </div>
           </div>
 
-          <Modal isOpen={isModalOpen} message={modalMessage} onClose={closeModal} />
+          <ModalError isOpen={isModalOpen} message={modalMessage} onClose={closeModal} />
           <ModalSuccess isOpen={isModalSuccessOpen} message="Cliente cadastrado com sucesso!" onClose={() => setIsModalSuccessOpen(false)} />
 
           <div className="flex items-center justify-between">
