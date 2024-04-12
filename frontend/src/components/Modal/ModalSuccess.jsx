@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const Modal = ({ isOpen, message, onClose }) => {
+const ModalSuccess = ({ isOpen, message, onClose }) => {
   const [animationClass, setAnimationClass] = useState('');
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Modal = ({ isOpen, message, onClose }) => {
       <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-md">
         <div className="modal-content bg-gray-50 p-4">
           <div className="flex justify-center mt-4">
-            <ErrorIcon className='font-semibold text-center text-red-700'/>
+            <CheckCircleIcon className='font-semibold text-center text-green-700'/>
           </div>
           <p className='text-lg font-semibold text-center text-gray-700 mt-[10px]'>{message}</p>
           <div className="flex justify-center mt-4">
@@ -29,4 +29,4 @@ const Modal = ({ isOpen, message, onClose }) => {
   );
 };
 
-export default Modal
+export default ModalSuccess

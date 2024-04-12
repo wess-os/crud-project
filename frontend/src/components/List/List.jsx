@@ -107,13 +107,13 @@ function List() {
             <Modal.Body className="p-4 text-center">
             {selectedPerson && (
               <>
-                <p>CEP: <strong>{selectedPerson.cep}</strong></p>
-                <p>Endereço: <strong>{selectedPerson.endereco}</strong></p>
-                <p>Número: <strong>{selectedPerson.numero}</strong></p>
-                <p>Complemento: <strong>{selectedPerson.complemento}</strong></p>
-                <p>Bairro: <strong>{selectedPerson.bairro}</strong></p>
-                <p>Estado: <strong>{selectedPerson.estado}</strong></p>
-                <p>Cidade: <strong>{selectedPerson.cidade}</strong></p>
+                <p>CEP: <strong className='text-gray-700'>{selectedPerson.cep}</strong></p>
+                <p>Endereço: <strong className='text-gray-700'>{selectedPerson.endereco}</strong></p>
+                <p>Número: <strong className='text-gray-700'>{selectedPerson.numero}</strong></p>
+                <p>Complemento: <strong className='text-gray-700'>{selectedPerson.complemento}</strong></p>
+                <p>Bairro: <strong className='text-gray-700'>{selectedPerson.bairro}</strong></p>
+                <p>Estado: <strong className='text-gray-700'>{selectedPerson.estado}</strong></p>
+                <p>Cidade: <strong className='text-gray-700'>{selectedPerson.cidade}</strong></p>
               </>
             )}
             </Modal.Body>

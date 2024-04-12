@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Modal from '../Modal/Modal';
+import ModalSuccess from '../Modal/ModalSuccess';
 
 function Create() {
   // formdata com os dados do cliente
@@ -20,6 +21,7 @@ function Create() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
 
   // verifica as mudanças nos valores dos campos
   const handleChange = (e) => {
@@ -40,7 +42,8 @@ function Create() {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API}/auth/create`, formData);
-      console.log(response.data);
+      setModalMessage('Usuário criado com sucesso!');
+      setIsModalSuccessOpen(true);
     } catch (error) {
       setModalMessage('An error occurred: ' + error.message);
       setIsModalOpen(true);
@@ -229,6 +232,7 @@ function Create() {
           </div>
 
           <Modal isOpen={isModalOpen} message={modalMessage} onClose={closeModal} />
+          <ModalSuccess isOpen={isModalSuccessOpen} message="Cliente cadastrado com sucesso!" onClose={() => setIsModalSuccessOpen(false)} />
 
           <div className="flex items-center justify-between">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
