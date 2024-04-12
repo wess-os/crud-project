@@ -30,7 +30,6 @@ router.post('/adminlogin', async (req, res) => {
 
         return res.json({ loginStatus: true, Sucess: 'Sucesso' });
     } catch (error) {
-        console.error(error);
         
         return res.json({ loginStatus: false, Error: 'Erro interno do servidor' });
     }
@@ -64,6 +63,37 @@ router.get('/list', async (req, res) => {
         }
 
         res.json({ Status: true, Pessoas: pessoas });
+    } catch (err) {
+        return res.status(500).json({ Status: false, Error: err.message });
+    }
+});
+
+router.put('/update/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nome, sexo, data_nascimento, estado_civil, cep, endereco, numero, complemento, bairro, estado, cidade } = req.body;
+
+        const updatedRows = await db('pessoas')
+            .where({ id })
+            .update({
+                nome,
+                sexo,
+                data_nascimento,
+                estado_civil,
+                cep,
+                endereco,
+                numero,
+                complemento,
+                bairro,
+                estado,
+                cidade
+            });
+
+        if (updatedRows === 0) {
+            return res.status(404).json({ Status: false, Error: 'Pessoa não encontrada' });
+        }
+
+        res.json({ Status: true, Message: 'Pessoa atualizada com sucesso' });
     } catch (err) {
         return res.status(500).json({ Status: false, Error: err.message });
     }
