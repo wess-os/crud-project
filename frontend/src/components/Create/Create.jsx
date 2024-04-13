@@ -19,6 +19,11 @@ function Create() {
     cidade: '',
   });
 
+  const token = localStorage.getItem('authToken');
+  const headers = {
+    'Authorization': `${token}`
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
@@ -41,11 +46,18 @@ function Create() {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API}/auth/create`, formData);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API}/protected/create`, formData, {headers});
+      
       setModalMessage('Usuário criado com sucesso!');
       setIsModalSuccessOpen(true);
+
     } catch (error) {
-      setModalMessage('An error occurred: ' + error.message);
+      if (error.response && error.response.data && error.response.data.Error.includes('Já existe uma pessoa com esse nome.')) {
+        setModalMessage('Já existe uma pessoa com esse nome. Por favor, escolha um nome diferente.');
+
+      } else {
+        setModalMessage('An error occurred: ' + error.message);
+      }
       setIsModalOpen(true);
     }
   };
@@ -55,7 +67,7 @@ function Create() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 max-w-[1300px]">
+    <div className="flex flex-col items-center justify-center bg-gray-100 max-w-[1300px] ml-[80px]">
       <h2 className='mt-3 font-bold text-xl'>Cadastrar Cliente</h2>
       <div className="w-full p-3">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8" onSubmit={handleSubmit}>

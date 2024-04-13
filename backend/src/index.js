@@ -1,17 +1,19 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const { router: adminRouter } = require('./routes/adminRouter');
+const adminRouter = require('./routes/adminRouter');
+const protectedRouter = require('./routes/protectedRoute');
 
 const app = express();
 
 app.use(cors({
     origin: [`http://localhost:${process.env.PORT_FRONTEND}`],
-    methods: ['GET', 'POST', 'PUT'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 app.use(express.json());
 app.use('/auth', adminRouter);
+app.use('/protected', protectedRouter);
 
 dotenv.config();
 
