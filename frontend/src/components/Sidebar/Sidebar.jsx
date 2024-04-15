@@ -25,7 +25,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li class="flex items-center space-x-2 mt-10">
-            <Link to="/adminlogin" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <LogoutIcon onClick={logout} fontSize="large" className='cursor-pointer text-decoration-none text-red-500' titleAccess='Sair'/>
             </Link>
           </li>

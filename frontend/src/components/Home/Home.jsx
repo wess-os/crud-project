@@ -56,7 +56,7 @@ function Home() {
           }
         } else if (response.status === 401) {
           console.error('Acesso não autorizado, redirecionando para login...');
-          window.location.href ='/adminlogin';
+          window.location.href ='/';
         } else {
           console.error('Erro ao buscar dados:', response.status);
         }

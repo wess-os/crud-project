@@ -4,7 +4,7 @@ const db = require('../db/knex');
 const jwt = require('jsonwebtoken');
 // const bcrypt = require('bcrypt');
 
-router.post('/adminlogin', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {

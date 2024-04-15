@@ -8,7 +8,7 @@ router.post('/create', authMiddleware, async (req, res) => {
         const pessoaData = req.body;
 
         const camposNecessarios = ['nome', 'sexo', 'data_nascimento', 'estado_civil', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'estado', 'cidade'];
-        const camposFaltantes = camposNecessarios.filter(campo => !pessoaData.hasOwnProperty(campo));
+        const camposFaltantes = camposNecessarios.filter(campo => !pessoaData.hasOwnProperty(campo) || pessoaData[campo] === '' || pessoaData[campo] === null);
 
         if (camposFaltantes.length > 0) {
             return res.status(400).json({ Status: false, Error: `Campos faltantes: ${camposFaltantes.join(', ')}` });

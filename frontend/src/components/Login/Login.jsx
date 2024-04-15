@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    axios.post(`${import.meta.env.VITE_REACT_APP_API}/auth/adminlogin`, values)
+    axios.post(`${import.meta.env.VITE_REACT_APP_API}/auth/login`, values)
       .then(result => {
         if(result.data.loginStatus) {
           localStorage.setItem('authToken', result.data.token);
