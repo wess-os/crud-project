@@ -246,7 +246,7 @@ function Home() {
       <Modal 
         show={openModal} 
         onClose={() => setOpenModal(false)} 
-        className="fixed inset-0 flex items-center justify-center z-50 mt-[100px] ml-[200px] mr-[200px]"
+        className="fixed inset-0 flex items-center justify-center z-50 mt-[-100px] ml-[200px] mr-[200px]"
       >
         <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
           <div className="bg-gray-50 p-4">
@@ -277,7 +277,7 @@ function Home() {
       <Modal 
         show={openEditModal} 
         onClose={() => setOpenEditModal(false)} 
-        className="fixed inset-0 flex items-center justify-center z-50 mt-[100px] ml-[200px] mr-[200px]"
+        className="fixed inset-0 flex items-center justify-center z-50 mt-[-50px] ml-[200px] mr-[200px]"
         >
         <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
           <div className="bg-gray-50 p-4">
